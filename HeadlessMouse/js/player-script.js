@@ -26,7 +26,7 @@ let partyMode = false;
 
 let backgroundPlaylist = false;
 let currentBgTrack = -1;
-let bgTracks;
+let bgTracks = [];
 
 /*
 let bpmTimer = setInterval(test, 1000);
@@ -121,7 +121,7 @@ function getToken(status){
     popup = window.open(
       `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`,
       'GROOVOX - Login with Spotify',
-      'width=400,height=500'
+      'width=400,height=1200'
     )
   }
   else {
@@ -178,8 +178,11 @@ function startPlayer(){
   player.connect();
 }
 
-function getBackgroundTracks(){
+async function getBackgroundTracks(){
   if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 200);
+    });
     fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks`, {
   	   method: 'get',
        headers: {
@@ -188,23 +191,165 @@ function getBackgroundTracks(){
     }).then(function(response) { return response.json(); })
     .then(function(data) {
       if (data.items.length == 0) {
-        alert("Failed to load background playlist")
+        console.log("none here")
       }
       else {
         backgroundPlaylist = true
-        bgTracks = data.items;
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
         console.log(bgTracks);
+        console.log("Set 1");
         bgTracks = bgTracks.sort(() => Math.random() - 0.5);
-        console.log(bgTracks);
         skip();
+
       }
-    })
-    .catch(function(err) {
-      alert("Failed to load background playlist")
     });
   }
-  else {
-    console.log("no bg playlist");
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 700);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=100`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 2");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1000);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=200`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 3");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1300);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=300`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 4");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1600);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=400`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 5");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1600);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=500`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      console.log(data);
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 6");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1600);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=600`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      console.log(data);
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 7");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
   }
 }
 

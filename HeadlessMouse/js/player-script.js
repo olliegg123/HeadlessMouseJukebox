@@ -351,6 +351,81 @@ async function getBackgroundTracks(){
       }
     });
   }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1600);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=700`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      console.log(data);
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 8");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1600);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=800`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      console.log(data);
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 9");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
+  if (urlParams.get('bgPlaylist') != null && urlParams.get('bgPlaylist') != "") {
+    let myPromise = new Promise(function(myResolve, myReject) {
+      setTimeout(function() { myResolve("I love You !!"); }, 1600);
+    });
+    fetch(`https://api.spotify.com/v1/playlists/${urlParams.get('bgPlaylist').substring(17)}/tracks?offset=900`, {
+  	   method: 'get',
+       headers: {
+         "authorization": "Bearer " + _token
+       }
+    }).then(function(response) { return response.json(); })
+    .then(function(data) {
+      console.log(data);
+      if (data.items.length == 0) {
+        console.log("none here")
+      }
+      else {
+        backgroundPlaylist = true
+        current = data.items;
+        bgTracks = bgTracks.concat(current);
+        console.log(bgTracks);
+        console.log("Set 10");
+        bgTracks = bgTracks.sort(() => Math.random() - 0.5);
+      }
+    });
+  }
 }
 
 //PLAY SONG

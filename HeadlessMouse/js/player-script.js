@@ -28,6 +28,8 @@ let backgroundPlaylist = false;
 let currentBgTrack = -1;
 let bgTracks = [];
 
+let skipped = 0;
+
 /*
 let bpmTimer = setInterval(test, 1000);
 let currentColour = 0;
@@ -140,6 +142,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   playerReady = true;
 };
 
+
 function startPlayer(){
   player = new Spotify.Player({
     name: 'GROOVOX',
@@ -154,11 +157,18 @@ function startPlayer(){
     //console.log(`${logCount}, URI:${state.track_window.current_track.uri}, currentSong:${currentSong}, lastSong:${lastSong}`);
     //console.log(state);
     //console.log(`${posting}`);
-    if (state.paused == true && state.position == 0 && state.disallows.pausing){
+    console.log(state.position);
+    if (state.position != 0) {
+      skipped = 0;
+    };
+    if (state.paused == true && state.position == 0 && state.disallows.pausing && skipped==0){
       player.pause().then(() => {
+        console.log("Skipped set to 1 - line 163");
         console.log("skipping!!!");
         lastSong = currentSong;
         skip();
+        skipped = 1;
+        
       });
     }
   });

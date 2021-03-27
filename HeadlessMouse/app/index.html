@@ -108,6 +108,7 @@
         <img onclick="skip()" id="skip" src="../img/skip.svg" alt="">
       </div>
       <div class="player-right">
+        <input type="range" min="0" max="100" value="50" class="slider" id="myRange" style="width: 250px;padding-bottom:45px;">
         <img onclick="togglePlaylistWindow()" class="playlist-button" src="../img/list.svg" alt="">
       </div>
     </section>
@@ -409,5 +410,21 @@
   </script>
   <script>
     $.keyboard.keyaction.accept = function(base){let query = document.getElementById('keyboard').value; trackSearch2(query); base.close(true);};
+  </script>
+  <script>
+    $("#myRange").on("input", function() {
+    console.log("slider", this.value)
+    changeVolume(this.value);
+    })
+
+    $("#myRange").on("mouseup", function() {
+      console.log("slider mouseup", this.value)
+      changeVolume(this.value);
+    })
+
+    $("#myButton").click(function() {
+      console.log("button", $("#myRange").val())
+      changeVolume(this.value);
+    })
   </script>
 </html>

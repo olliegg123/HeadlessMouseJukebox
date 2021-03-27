@@ -793,3 +793,18 @@ function togglePlaylistWindow(){
     document.getElementById('playlist-window').style.display = "block";
   }
 }
+
+function changeVolume(volume){
+  fetch(`https://api.spotify.com/v1/me/player/volume?volume_percent=${volume}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${_token}`
+      },
+    }).then(function(response) {
+      if (response.status == 200){
+        console.log("volume updated");
+      }
+    })
+
+}
